@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Will You Be Mine? 💖</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
+
+    body{
+      height:100vh;
+      overflow:hidden;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:linear-gradient(135deg,#ff5f9e,#9b5cff,#4facfe);
+    }
+
+    .container{
+      width:90%;
+      max-width:700px;
+      padding:50px;
+      border-radius:30px;
+      text-align:center;
+      background:rgba(255,255,255,0.2);
+      backdrop-filter:blur(10px);
+      color:white;
+      box-shadow:0 10px 30px rgba(0,0,0,0.2);
+      position:relative;
+    }
+
+    h1{
+      font-size:60px;
+      margin-bottom:20px;
+    }
+
+    #message{
+      font-size:24px;
+      margin-bottom:40px;
+    }
+
+    .buttons{
+      position:relative;
+      height:200px;
+    }
+
+    button{
+      padding:15px 35px;
+      border:none;
+      border-radius:40px;
+      font-size:24px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    #yesBtn{
+      background:white;
+      color:#ff4d8d;
+      margin-right:20px;
+    }
+
+    #yesBtn:hover{
+      transform:scale(1.1);
+    }
+
+    #noBtn{
+      background:#555;
+      color:white;
+      position:absolute;
+    }
+
+    .celebration{
+      text-align:center;
+      color:white;
+      animation:float 3s infinite ease-in-out;
+    }
+
+    .celebration h1{
+      font-size:70px;
+    }
+
+    .celebration p{
+      font-size:28px;
+      margin-top:20px;
+      line-height:1.6;
+    }
+
+    @keyframes float{
+      0%{transform:translateY(0);}
+      50%{transform:translateY(-10px);}
+      100%{transform:translateY(0);}
+    }
+
+    .heart{
+      position:absolute;
+      font-size:30px;
+      animation:fall linear forwards;
+    }
+
+    @keyframes fall{
+      from{
+        transform:translateY(-10vh) rotate(0deg);
+        opacity:1;
+      }
+
+      to{
+        transform:translateY(110vh) rotate(360deg);
+        opacity:0;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="container" id="mainBox">
+
+    <div style="font-size:90px;">💌</div>
+
+    <h1>Will You Be Mine?</h1>
+
+    <p id="message">
+      I promise this is the cutest decision ever 🌸
+    </p>
+
+    <div class="buttons">
+
+      <button id="yesBtn">
+        Yes 💖
+      </button>
+
+      <button id="noBtn">
+        No 😅
+      </button>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    const lines = [
+      "Nope 😝 Try again!",
+      "Are you really sure? 💕",
+      "Come on... it’ll be cute 🥺",
+      "The universe already shipped us ✨",
+      "Even the stars said yes 🌙",
+      "You can’t escape love 💖",
+      "That button doesn’t believe in no 😎",
+      "Just click yes already 🌸",
+      "My heart says yes for you 💘",
+      "One tiny yes = infinite happiness 🌈"
+    ];
+
+    const noBtn = document.getElementById("noBtn");
+    const msg = document.getElementById("message");
+    const yesBtn = document.getElementById("yesBtn");
+
+    function moveButton(){
+
+      const maxX = window.innerWidth - 200;
+      const maxY = window.innerHeight - 100;
+
+      const randomX = Math.floor(Math.random() * maxX);
+      const randomY = Math.floor(Math.random() * maxY);
+
+      noBtn.style.left = randomX + "px";
+      noBtn.style.top = randomY + "px";
+
+      const randomText =
+        lines[Math.floor(Math.random() * lines.length)];
+
+      msg.innerText = randomText;
+    }
+
+    noBtn.addEventListener("mouseover", moveButton);
+    noBtn.addEventListener("click", moveButton);
+
+    yesBtn.addEventListener("click", () => {
+
+      document.body.innerHTML = `
+      
+      <div class="celebration">
+
+        <div style="font-size:120px;">💖</div>
+
+        <h1>YAYYYYY ✨</h1>
+
+        <p>
+          You just made this tiny colorful universe
+          the happiest place ever 🌸
+          <br><br>
+          Every playlist sounds sweeter now 💕
+        </p>
+
+        <h2 style="margin-top:30px;font-size:40px;">
+          You + Me = Forever 🌈
+        </h2>
+
+      </div>
+      
+      `;
+
+      setInterval(() => {
+
+        const heart = document.createElement("div");
+
+        heart.classList.add("heart");
+
+        const emojis = ["💖","💕","💘","🌸","✨"];
+
+        heart.innerText =
+          emojis[Math.floor(Math.random()*emojis.length)];
+
+        heart.style.left = Math.random() * 100 + "vw";
+
+        heart.style.animationDuration =
+          (2 + Math.random()*3) + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(()=>{
+          heart.remove();
+        },5000);
+
+      },250);
+
+    });
+
+  </script>
+
+</body>
+</html>
