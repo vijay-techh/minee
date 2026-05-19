@@ -54,16 +54,14 @@
       padding:0 10px;
     }
 
-    .buttons{
-      position:relative;
-      height:180px;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      gap:20px;
-      flex-wrap:wrap;
-    }
-
+.buttons{
+  position:relative;
+  height:300px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+}
     button{
       padding:14px 30px;
       border:none;
@@ -166,6 +164,17 @@
       #noBtn{
         position:absolute;
       }
+      
+  .buttons{
+    height:350px;
+  }
+
+  #noBtn{
+    position:absolute;
+    bottom:20px;
+  }
+
+
 
     }
 
@@ -217,22 +226,33 @@
     const msg = document.getElementById("message");
     const yesBtn = document.getElementById("yesBtn");
 
-    function moveButton(){
+function moveButton(){
 
-      const maxX = window.innerWidth - 140;
-      const maxY = window.innerHeight - 100;
+  const btnWidth = noBtn.offsetWidth;
+  const btnHeight = noBtn.offsetHeight;
 
-      const randomX = Math.floor(Math.random() * maxX);
-      const randomY = Math.floor(Math.random() * maxY);
+  const padding = 20;
 
-      noBtn.style.left = randomX + "px";
-      noBtn.style.top = randomY + "px";
+  const maxX =
+    window.innerWidth - btnWidth - padding;
 
-      const randomText =
-        lines[Math.floor(Math.random() * lines.length)];
+  const maxY =
+    window.innerHeight - btnHeight - padding;
 
-      msg.innerText = randomText;
-    }
+  const randomX =
+    Math.floor(Math.random() * maxX);
+
+  const randomY =
+    Math.floor(Math.random() * maxY);
+
+  noBtn.style.left = randomX + "px";
+  noBtn.style.top = randomY + "px";
+
+  const randomText =
+    lines[Math.floor(Math.random() * lines.length)];
+
+  msg.innerText = randomText;
+}
 
     noBtn.addEventListener("mouseover", moveButton);
     noBtn.addEventListener("click", moveButton);
