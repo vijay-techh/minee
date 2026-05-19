@@ -250,11 +250,22 @@
 
 function moveButton(){
 
-  const yesBtnRect =
-    yesBtn.getBoundingClientRect();
-
   const noWidth = noBtn.offsetWidth;
   const noHeight = noBtn.offsetHeight;
+
+  const padding = 10;
+
+  const maxX =
+    window.innerWidth - noWidth - padding;
+
+  const maxY =
+    window.innerHeight - noHeight - padding;
+
+  const minX = padding;
+  const minY = padding;
+
+  const yesRect =
+    yesBtn.getBoundingClientRect();
 
   let randomX;
   let randomY;
@@ -262,40 +273,41 @@ function moveButton(){
   do {
 
     randomX =
-      Math.random() *
-      (window.innerWidth - noWidth - 20);
+      Math.floor(
+        Math.random() * (maxX - minX)
+      ) + minX;
 
     randomY =
-      Math.random() *
-      (window.innerHeight - noHeight - 20);
+      Math.floor(
+        Math.random() * (maxY - minY)
+      ) + minY;
 
   }
 
   while (
 
     randomX <
-      yesBtnRect.right + 50 &&
+      yesRect.right + 40 &&
 
     randomX + noWidth >
-      yesBtnRect.left - 50 &&
+      yesRect.left - 40 &&
 
     randomY <
-      yesBtnRect.bottom + 50 &&
+      yesRect.bottom + 40 &&
 
     randomY + noHeight >
-      yesBtnRect.top - 50
+      yesRect.top - 40
 
   );
 
-  noBtn.style.left = randomX + "px";
-  noBtn.style.top = randomY + "px";
+  noBtn.style.left = `${randomX}px`;
+  noBtn.style.top = `${randomY}px`;
 
   const randomText =
     lines[Math.floor(Math.random() * lines.length)];
 
   msg.innerText = randomText;
 }
-
     noBtn.addEventListener("mouseover", moveButton);
     noBtn.addEventListener("click", moveButton);
 
