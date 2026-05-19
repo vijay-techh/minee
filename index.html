@@ -239,22 +239,42 @@
 
 function moveButton(){
 
-  const btnWidth = noBtn.offsetWidth;
-  const btnHeight = noBtn.offsetHeight;
+  const yesBtnRect =
+    yesBtn.getBoundingClientRect();
 
-  const padding = 20;
+  const noWidth = noBtn.offsetWidth;
+  const noHeight = noBtn.offsetHeight;
 
-  const maxX =
-    window.innerWidth - btnWidth - padding;
+  let randomX;
+  let randomY;
 
-  const maxY =
-    window.innerHeight - btnHeight - padding;
+  do {
 
-  const randomX =
-    Math.floor(Math.random() * maxX);
+    randomX =
+      Math.random() *
+      (window.innerWidth - noWidth - 20);
 
-  const randomY =
-    Math.floor(Math.random() * maxY);
+    randomY =
+      Math.random() *
+      (window.innerHeight - noHeight - 20);
+
+  }
+
+  while (
+
+    randomX <
+      yesBtnRect.right + 50 &&
+
+    randomX + noWidth >
+      yesBtnRect.left - 50 &&
+
+    randomY <
+      yesBtnRect.bottom + 50 &&
+
+    randomY + noHeight >
+      yesBtnRect.top - 50
+
+  );
 
   noBtn.style.left = randomX + "px";
   noBtn.style.top = randomY + "px";
